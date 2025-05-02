@@ -4,7 +4,8 @@
   "description": "Curso 'Cypress Simulator' da Escola Talking About Testing.",
   "main": "src/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:open": "cypress open",
+    "test": "cypress run"
   },
   "keywords": [
     "Testing",
@@ -16,5 +17,14 @@
   ],
   "author": "Walmyr <wlsf82@gmail.com> (https://walmyr.dev/)",
   "license": "MIT",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "@bahmutov/cy-grep": "^2.0.22",
+    "cypress": "^13.17.0",
+    "cypress-axe": "^1.5.0",
+    "cypress-plugin-grep-boxes": "^1.1.0"
+  },
+  "dependencies": {
+    "axe-core": "^4.10.2"
+  }
 }
