@@ -21,30 +21,30 @@ describe("Cypress Simulator - A11y Checks", () => {
     })
     
     
-    Cypress._.times(100, () => {
-      it("verifica mensagem de erro: error: valid command without parentheses na execução dos comandos - Exemplo: cy.visit", () => {
-        cy.run("cy.visit")
-      
-        cy.get("#outputArea", { timeout: 10000 })
-          .should("contain", "Error:")
-          .and("contain", "Missing parentheses on `cy.visit` command")
-          .and("be.visible")
+    it("verifica mensagem de erro: error: valid command without parentheses na execução dos comandos - Exemplo: cy.visit", () => {
+    cy.run("cy.visit")
   
-        cy.checkA11y(".error")    //classe verificada através da visualização do elemento no console do navegador
-      })
+    cy.get("#outputArea", { timeout: 10000 })
+      .should("contain", "Error:")
+      .and("contain", "Missing parentheses on `cy.visit` command")
+      .and("be.visible")
+
+    cy.checkA11y(".error")    //classe verificada através da visualização do elemento no console do navegador
     })
 
-    it("verifica mensagem success na execução dos comandos - Exemplo: cy.log('Yay!')", () => {
-      cy.run("cy.log('Yay!')")
-    
-      //cy.get(".success", { timeout: 10000 })
-      cy.get("#outputArea", { timeout: 10000 })
-        //.should("be.visible")
-        .should("contain", "Success:")
-        .and("contain", "cy.log('Yay!') // Logged message 'Yay!'")
-        .and("be.visible")
+    Cypress._.times(100, () => {  
+      it("verifica mensagem success na execução dos comandos - Exemplo: cy.log('Yay!')", () => {
+        cy.run("cy.log('Yay!')")
+      
+        //cy.get(".success", { timeout: 10000 })
+        cy.get("#outputArea", { timeout: 10000 })
+          //.should("be.visible")
+          .should("contain", "Success:")
+          .and("contain", "cy.log('Yay!') // Logged message 'Yay!'")
+          .and("be.visible")
 
-      cy.checkA11y(".success")    
+        cy.checkA11y(".success")    
+      })
     })
 
     it("verifica mensagem de erro: error: invalid cypress command, na execução dos comandos - Exemplo: cy.run()", () => {
