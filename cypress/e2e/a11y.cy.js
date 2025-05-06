@@ -9,6 +9,19 @@ describe("Cypress Simulator - A11y Checks", () => {
       cy.injectAxe()
     })
 
+    Cypress._.times(100, () => {
+      it("verifica mensagem warning quando ainda não foi emplementada a simulação de um comando existente na execução dos comandos - Ex: cy.contains('Login') ", () => {
+        cy.run("cy.contains('Login')")
+      
+        cy.get("#outputArea", { timeout: 10000 })
+          .should("contain", "Warning:")
+          .and("contain", "The `cy.contains` command has not been implemented yet.")
+          .and("be.visible")
+  
+        cy.checkA11y(".warning")    //classe verificada através da visualização do elemento no console do navegador
+      })
+    })  
+
     it("verifica mensagem success na execução dos comandos - Exemplo: cy.log('Yay!')", () => {
       cy.run("cy.log('Yay!')")
     
