@@ -9,18 +9,30 @@ describe("Cypress Simulator - A11y Checks", () => {
       cy.injectAxe()
     })
 
+    it("verifica mensagem warning quando ainda não foi emplementada a simulação de um comando existente na execução dos comandos - Ex: cy.contains('Login') ", () => {
+      cy.run("cy.contains('Login')")
+    
+      cy.get("#outputArea", { timeout: 10000 })
+        .should("contain", "Warning:")
+        .and("contain", "The `cy.contains` command has not been implemented yet.")
+        .and("be.visible")
+
+      cy.checkA11y(".warning")    //classe verificada através da visualização do elemento no console do navegador
+    })
+    
+    
     Cypress._.times(100, () => {
-      it("verifica mensagem warning quando ainda não foi emplementada a simulação de um comando existente na execução dos comandos - Ex: cy.contains('Login') ", () => {
-        cy.run("cy.contains('Login')")
+      it("verifica mensagem de erro: error: valid command without parentheses na execução dos comandos - Exemplo: cy.visit", () => {
+        cy.run("cy.visit")
       
         cy.get("#outputArea", { timeout: 10000 })
-          .should("contain", "Warning:")
-          .and("contain", "The `cy.contains` command has not been implemented yet.")
+          .should("contain", "Error:")
+          .and("contain", "Missing parentheses on `cy.visit` command")
           .and("be.visible")
   
-        cy.checkA11y(".warning")    //classe verificada através da visualização do elemento no console do navegador
+        cy.checkA11y(".error")    //classe verificada através da visualização do elemento no console do navegador
       })
-    })  
+    })
 
     it("verifica mensagem success na execução dos comandos - Exemplo: cy.log('Yay!')", () => {
       cy.run("cy.log('Yay!')")
