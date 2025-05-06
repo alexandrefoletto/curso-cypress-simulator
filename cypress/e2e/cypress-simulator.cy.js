@@ -208,16 +208,18 @@ describe("Cypress Simulator", () => {
     
   })
 
-  it("verifica mensagem success na execução dos comandos - Exemplo: cy.log('Yay!')", () => {
-    //cy.get("#codeInput")
-    cy.run("cy.log('Yay!')")
+  Cypress._.times(100, () => {
+    it("verifica mensagem success na execução dos comandos - Exemplo: cy.log('Yay!')", () => {
+      //cy.get("#codeInput")
+      cy.run("cy.log('Yay!')")
 
-    //cy.get(".success", { timeout: 10000 })
-    cy.get("#outputArea", { timeout: 10000 })
-      //.should("be.visible")
-      .should("contain", "Success:")
-      .and("contain", "cy.log('Yay!') // Logged message 'Yay!'")
-      .and("be.visible")
+      //cy.get(".success", { timeout: 10000 })
+      cy.get("#outputArea", { timeout: 10000 })
+        //.should("be.visible")
+        .should("contain", "Success:")
+        .and("contain", "cy.log('Yay!') // Logged message 'Yay!'")
+        .and("be.visible")
+    })
   })
 
   it("verifica mensagem de erro: error: invalid cypress command, na execução dos comandos - Exemplo: cy.run()", () => {
