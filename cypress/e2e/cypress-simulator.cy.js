@@ -1,7 +1,7 @@
 describe("Cypress Simulator", () => {
   beforeEach(() => {
     cy.login()
-    cy.visit("./src/index.html?skipCaptcha=true", {     //Abre a URL da aplicação ,skipa o Captcha e skipa o banner de consentimento de cookies
+    cy.visit("./src/index.html?skipCaptcha=true&chancesOfError=0", {     //Abre a URL da aplicação ,skipa o Captcha e skipa o banner de consentimento de cookies
       onBeforeLoad(win) {
         win.localStorage.setItem("cookieConsent", "accepted")
       }

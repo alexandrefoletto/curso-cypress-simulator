@@ -1,7 +1,7 @@
 describe("Cypress Simulator - A11y Checks", () => {
     beforeEach(() => {
       cy.login()
-      cy.visit("./src/index.html?skipCaptcha=true", {
+      cy.visit("./src/index.html?skipCaptcha=true&chancesOfError=0", {
         onBeforeLoad(win) {
           win.localStorage.setItem("cookieConsent", "accepted")
         }
@@ -32,19 +32,20 @@ describe("Cypress Simulator - A11y Checks", () => {
     cy.checkA11y(".error")    //classe verificada através da visualização do elemento no console do navegador
     })
 
-    Cypress._.times(100, () => {  
-      it("verifica mensagem success na execução dos comandos - Exemplo: cy.log('Yay!')", () => {
-        cy.run("cy.log('Yay!')")
+    // Cypress._.times(100, () => {  
       
-        //cy.get(".success", { timeout: 10000 })
-        cy.get("#outputArea", { timeout: 10000 })
-          //.should("be.visible")
-          .should("contain", "Success:")
-          .and("contain", "cy.log('Yay!') // Logged message 'Yay!'")
-          .and("be.visible")
+    // })
+    it("verifica mensagem success na execução dos comandos - Exemplo: cy.log('Yay!')", () => {
+      cy.run("cy.log('Yay!')")
+    
+      //cy.get(".success", { timeout: 10000 })
+      cy.get("#outputArea", { timeout: 10000 })
+        //.should("be.visible")
+        .should("contain", "Success:")
+        .and("contain", "cy.log('Yay!') // Logged message 'Yay!'")
+        .and("be.visible")
 
-        cy.checkA11y(".success")    
-      })
+      cy.checkA11y(".success")    
     })
 
     it("verifica mensagem de erro: error: invalid cypress command, na execução dos comandos - Exemplo: cy.run()", () => {
