@@ -323,6 +323,27 @@ describe("Cypress Simulator - Cookies consent", () => {
   })
 })
 
+describe("Cypress Simulator - Erro na Matrix", () => {
+  beforeEach(() => {
+    cy.login()
+    cy.visit("./src/index.html?skipCaptcha=true&chancesOfError=1", {
+      onBeforeLoad(win) {
+        win.localStorage.setItem("cookieConsent", "accepted")
+      }
+    })
+    cy.clearLocalStorage()    //Limpa o Local Storage antes de cada teste
+    cy.injectAxe()
+  })
+
+  it("Errors out with a glitch in the Matrix", () => {
+    cy.run("cy.log('Yay!')")
+
+    cy.get("#outputArea", { timeout: 10000 })
+      .should("contain", "There's a glitch in the Matrix.")
+      .and("be.visible")
+  })
+})
+
 describe("Cypress Simulator - Captcha", () => {
   beforeEach(() => {
     cy.clearLocalStorage()    //Limpa o Local Storage antes de cada teste
