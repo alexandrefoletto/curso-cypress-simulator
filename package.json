@@ -19,13 +19,11 @@
   "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
-    "@bahmutov/cy-grep": "^2.0.22",
-    "cypress": "^13.17.0",
-    "cypress-axe": "^1.5.0",
+    "@bahmutov/cy-grep": "^2.0.25",
+    "axe-core": "^4.10.3",
+    "cypress": "^14.3.3",
+    "cypress-axe": "^1.6.0",
     "cypress-plugin-grep-boxes": "^1.1.0",
-    "cypress-split": "^1.24.7"
-  },
-  "dependencies": {
-    "axe-core": "^4.10.2"
+    "cypress-split": "^1.24.15"
   }
 }
